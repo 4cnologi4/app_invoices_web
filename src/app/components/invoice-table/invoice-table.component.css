@@ -2,7 +2,7 @@
     width: 100%;
     max-height: 250px;
     /* Set the maximum height */
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .mat-column-ID {
@@ -10,4 +10,11 @@
     border-right: 1px solid currentColor;
     padding-right: 24px;
     text-align: center;
+}
+
+
+.mat-elevation-z8 {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
 }
