@@ -1,1 +1,9 @@
-<invoice-table [invoices]="invoices" (getInvoiceTrigger)="get_invoices_by_date_range()"></invoice-table>
+<div class="table-container">
+    <button style="display: flex; align-self: center;" mat-raised-button color="primary"
+        (click)="get_invoices_by_date_range()">Consultar</button>
+    @if (loading) {
+    <mat-spinner></mat-spinner>
+    } @else {
+    <invoice-table [invoices]="invoices"></invoice-table>
+    }
+</div>

@@ -1,17 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'invoice-table',
   templateUrl: './invoice-table.component.html',
-  styleUrls: ['./invoice-table.component.css']
+  styleUrls: ['./invoice-table.component.css'],
+  providers: [provideNativeDateAdapter()],
 })
 
 export class InvoiceTableComponent {
   @Input() invoices: any[] = [];
-  displayedColumns: string[] = ['ID', 'Date', 'Invoice Number', 'Status', 'Total'];
-  @Output() getInvoiceTrigger: EventEmitter<any> = new EventEmitter<any>();
-
-  getInvoices() {
-    this.getInvoiceTrigger.emit();
-  }
+  displayedColumns: string[] = ['ID', 'Date', 'Invoice Number', 'Status', 'Total'];  
 }

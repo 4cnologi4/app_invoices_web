@@ -1,18 +1,3 @@
-<!-- <mat-form-field>
-    <mat-label>Enter a date range</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date">
-        <input matEndDate placeholder="End date">
-    </mat-date-range-input>
-    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-</mat-form-field>
-
-<mat-date-range-picker #picker></mat-date-range-picker> -->
-
-<button mat-raised-button color="primary" (click)="getInvoices()">Primary</button>
-
 <table mat-table [dataSource]="invoices" class="mat-elevation-z8 invoice-table">
     <ng-container matColumnDef="ID">
         <th mat-header-cell *matHeaderCellDef> ID </th>

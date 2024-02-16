@@ -10,11 +10,16 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 import { InvoiceTableComponent } from './components/invoice-table/invoice-table.component';
 import { InvoiceTableRowComponent } from './components/invoice-table-row/invoice-table-row.component';
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {JsonPipe} from '@angular/common';
+
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
-        MaterialModule
+        MaterialModule,
+        FormsModule, ReactiveFormsModule,
+        JsonPipe
     ],
     declarations: [
         AppComponent,

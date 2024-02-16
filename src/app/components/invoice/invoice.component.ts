@@ -8,17 +8,15 @@ import { InvoiceService } from '../../services/invoice.service';
 })
 export class InvoiceComponent {
   invoices: any[] = [];
+  loading: boolean = false;
 
   constructor(private invoiceService: InvoiceService) { }
-
-  ngOnInit() {
-    // this.get_invoices_by_date_range()
-  }
 
   get_invoices_by_date_range() {
     console.log("Hello");
     const startDate = '2022-01-01';
     const endDate = '2022-01-04';
+    this.loading = true;
     this.invoiceService.getInvoices(startDate, endDate)
       .subscribe(
         (response) => {
@@ -27,12 +25,9 @@ export class InvoiceComponent {
         (error) => {
           console.error('Error fetching invoices:', error);
         }
-      );
+      ).add(() => {
+        this.loading = false;
+      });
   }
 
-  onInvoiceSelected() {
-    console.log('Invoice selected:');
-    // Add your logic here
-  }
-  
 }
