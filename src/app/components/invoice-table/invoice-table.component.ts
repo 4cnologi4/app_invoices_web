@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'invoice-table',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 export class InvoiceTableComponent {
   @Input() invoices: any[] = [];
   displayedColumns: string[] = ['ID', 'Date', 'Invoice Number', 'Status', 'Total'];
+  @Output() getInvoiceTrigger: EventEmitter<any> = new EventEmitter<any>();
+
+  getInvoices() {
+    this.getInvoiceTrigger.emit();
+  }
 }

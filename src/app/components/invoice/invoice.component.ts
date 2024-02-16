@@ -12,10 +12,11 @@ export class InvoiceComponent {
   constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit() {
-    this.get_invoices_by_date_range()
+    // this.get_invoices_by_date_range()
   }
 
   get_invoices_by_date_range() {
+    console.log("Hello");
     const startDate = '2022-01-01';
     const endDate = '2022-01-04';
     this.invoiceService.getInvoices(startDate, endDate)
@@ -28,4 +29,10 @@ export class InvoiceComponent {
         }
       );
   }
+
+  onInvoiceSelected() {
+    console.log('Invoice selected:');
+    // Add your logic here
+  }
+  
 }
