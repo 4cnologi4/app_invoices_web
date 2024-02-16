@@ -1,9 +1,35 @@
-<div class="table-container">
-    <button style="display: flex; align-self: center;" mat-raised-button color="primary"
-        (click)="get_invoices_by_date_range()">Consultar</button>
-    @if (loading) {
-    <mat-spinner></mat-spinner>
-    } @else {
-    <invoice-table [invoices]="invoices"></invoice-table>
-    }
-</div>
+<mat-card>
+    <mat-card-content>
+        <div class="table-container">
+            <form class="table-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="dates-container">
+                    <div style="display: flex; align-items: center;">
+                        <label class="date-label" for="startDate">Fecha Inicial:</label>
+                        <input type="date" id="startDate" name="startDate" formControlName="startDate">
+                        <div *ngIf="form.controls['startDate'].invalid && form.controls['startDate'].touched"
+                            class="error">
+                            Fecha Inicial es requerida.
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <label class="date-label" for="endDate">Fecha Final:</label>
+                        <input type="date" id="endDate" name="endDate" formControlName="endDate">
+                        <div *ngIf="form.controls['endDate'].invalid && form.controls['endDate'].touched" class="error">
+                            Fecha Final es requerida.
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-submit" mat-raised-button color="primary" type="submit"
+                    [disabled]="loading || form.invalid">Consultar</button>
+            </form>
+
+            @if (loading) {
+            <mat-spinner></mat-spinner>
+            } @else if (invoices.length > 0) {
+            <invoice-table [invoices]="invoices"></invoice-table>
+            }
+        </div>
+    </mat-card-content>
+</mat-card>

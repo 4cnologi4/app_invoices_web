@@ -6,9 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
         MatFormFieldModule,
         MatButtonModule,
         MatInputModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCardModule,
+        MatPaginatorModule
     ],
     exports: [
         MatTableModule,
@@ -25,7 +29,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
         MatFormFieldModule,
         MatButtonModule,
         MatInputModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCardModule,
+        MatPaginatorModule
     ],
     providers: [provideNativeDateAdapter()],
 })

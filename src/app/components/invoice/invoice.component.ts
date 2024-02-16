@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
@@ -9,25 +10,38 @@ import { InvoiceService } from '../../services/invoice.service';
 export class InvoiceComponent {
   invoices: any[] = [];
   loading: boolean = false;
-
-  constructor(private invoiceService: InvoiceService) { }
-
-  get_invoices_by_date_range() {
-    console.log("Hello");
-    const startDate = '2022-01-01';
-    const endDate = '2022-01-04';
-    this.loading = true;
-    this.invoiceService.getInvoices(startDate, endDate)
-      .subscribe(
-        (response) => {
-          this.invoices = response;
-        },
-        (error) => {
-          console.error('Error fetching invoices:', error);
-        }
-      ).add(() => {
-        this.loading = false;
-      });
+  form: FormGroup;
+  
+  constructor(private fb: FormBuilder, private invoiceService: InvoiceService) {
+    this.form = this.fb.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    }, { validators: this.dateRangeValidator });
   }
 
+  dateRangeValidator(form: FormGroup) {
+    const startDate = form.get('startDate')?.value;
+    const endDate = form.get('endDate')?.value;
+    return startDate && endDate && startDate > endDate ? { 'invalidRange': true } : null;
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.loading = true;
+      const startDate = this.form.get('startDate')?.value;
+      const endDate = this.form.get('endDate')?.value;
+      this.invoiceService.getInvoices(startDate, endDate)
+        .subscribe(
+          (response) => {
+            this.invoices = response;
+          },
+          (error) => {
+            console.error('Error fetching invoices:', error);
+          }
+        )
+        .add(() => {
+          this.loading = false;
+        });
+    }
+  }
 }

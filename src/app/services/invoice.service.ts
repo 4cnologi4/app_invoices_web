@@ -13,6 +13,7 @@ export class InvoiceService {
 
   getInvoices(startDate: string, endDate: string): Observable<any[]> {
     const payload = { start_date: startDate, end_date: endDate };
+    console.log(payload)
     return this.http.post<any[]>(this.apiUrl, payload);
   }
 }
